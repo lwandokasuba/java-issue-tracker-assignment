@@ -1,0 +1,10 @@
+type Query {
+    equipments: [Equipment]
+    equipmentById (id: ID): Equipment
+}
+
+type Equipment {
+    id: ID,
+    name: String,
+    description: String
+}

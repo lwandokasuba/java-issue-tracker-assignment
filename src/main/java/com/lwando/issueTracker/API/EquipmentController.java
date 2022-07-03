@@ -3,13 +3,15 @@ package com.lwando.issueTracker.API;
 import com.lwando.issueTracker.BAL.EquipmentService;
 import com.lwando.issueTracker.DAL.Equipment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping(path = "api/v1/equipment")
+@Controller
 public class EquipmentController {
     private final EquipmentService equipmentService;
 
@@ -17,27 +19,20 @@ public class EquipmentController {
     public EquipmentController(EquipmentService equipmentService) {
         this.equipmentService = equipmentService;
     }
-    @GetMapping
-    public List<Equipment> getEquipment() {
+
+    @QueryMapping
+    public List<Equipment> equipments() {
         return equipmentService.getEquipment();
     }
 
-    @PostMapping
-    public void addEquipment(@RequestBody Equipment equipment) {
-        equipmentService.addNewEquipment(equipment);
+    @QueryMapping
+    public Optional<Equipment> equipmentById(@Argument Long id) {
+        return equipmentService.getEquipmentById(id);
     }
 
-    @DeleteMapping(path = "{equipmentId}")
-    public void deleteEquipment(@PathVariable("equipmentId") Long equipmentId) {
-        equipmentService.deleteEquipment(equipmentId);
+    @MutationMapping
+    public Equipment addEquipment(@Argument String name, @Argument String description, @Argument String location) {
+        return equipmentService.addNewEquipment(name, description, location);
     }
 
-    @PutMapping(path = "{equipmentId}")
-    public void updateEquipment(
-            @PathVariable("equipmentId") Long equipmentId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String description
-    ) {
-        equipmentService.updateEquipment(equipmentId, name, description);
-    }
 }

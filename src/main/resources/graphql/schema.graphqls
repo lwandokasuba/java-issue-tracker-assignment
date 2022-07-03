@@ -1,9 +1,55 @@
 type Query {
     equipments: [Equipment]
     equipmentById (id: ID): Equipment
+    inspections: [Inspection]
+    inspectionById (id: ID): Inspection
+    user (id: ID): User
+    status: [Status]
+    statusById (id: ID): Status
+    Roles: Role
+    RoleById (id: ID): Role
+}
+
+type Mutation {
+    addEquipment(name: String, description: String): Equipment
+    addInspection(name: String, description: String, equipmentId: ID, userId: ID, statusId: ID, date: String): Inspection
+    addStatus(name: String, description: String): Status
+    addUser(username: String, password: String): User
+    addRole(name: String, description: String): Role
+
 }
 
 type Equipment {
+    id: ID,
+    name: String,
+    description: String
+    location: String
+}
+
+type Inspection {
+    id: ID,
+    name: String,
+    description: String,
+    date: String,
+    equipment: Equipment,
+    user: User,
+    status: Status
+}
+
+type Status {
+    id: ID,
+    name: String,
+    description: String
+}
+
+type User {
+    id: ID,
+    username: String,
+    password: String,
+    role: Role
+}
+
+type Role {
     id: ID,
     name: String,
     description: String

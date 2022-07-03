@@ -3,11 +3,13 @@ package com.lwando.issueTracker.BAL;
 import com.lwando.issueTracker.DAL.Equipment;
 import com.lwando.issueTracker.DAL.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class EquipmentService {
@@ -22,8 +24,14 @@ public class EquipmentService {
         return equipmentRepository.findAll();
     }
 
-    public void addNewEquipment(Equipment equipment) {
+    public Optional<Equipment> getEquipmentById(Long id) {
+        return equipmentRepository.findById(id);
+    }
+
+    public Equipment addNewEquipment(String name, String description, String location) {
+        Equipment equipment = new Equipment(name, description, location);
         equipmentRepository.save(equipment);
+        return equipment;
     }
 
     public void deleteEquipment(Long equipmentId) {

@@ -4,39 +4,34 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Equipment {
+public class Status {
     @Id
     @SequenceGenerator(
-            name = "equipment_sequence",
-            sequenceName = "equipment_sequence",
+            name = "status_sequence",
+            sequenceName = "status_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "equipment_sequence"
+            generator = "status_sequence"
     )
+
     private Long id;
     private String name;
     private String description;
-    private String location;
 
-    public Equipment(String name, String description, String location) {
-        this.name = name;
-        this.description = description;
-        this.location = location;
-    }
-
-    public Equipment(Long id, String name, String description) {
+    public Status(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public Equipment() {
+    public Status(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
-    public Equipment(Long equipmentId) {
-        this.id = equipmentId;
+    public Status() {
     }
 
     public Long getId() {
@@ -61,22 +56,5 @@ public class Equipment {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    @Override
-    public String toString() {
-        return "Equipment{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
     }
 }

@@ -1,0 +1,78 @@
+mutation addInspection(
+  $name: String
+  $description: String
+  $equipmentId: ID,
+  $userId: ID,
+  $statusId: ID,
+  $date: String
+) {
+  addInspection(
+    name: $name
+    description: $description
+    equipmentId: $equipmentId
+    userId: $userId
+    statusId: $statusId
+    date: $date
+  ) {
+    id
+  }
+}
+
+mutation addEquipment($name: String, $description: String) {
+  addEquipment(name: $name, description: $description) {
+    id
+  }
+}
+
+mutation addStatus($name: String, $description: String) {
+  addStatus(name: $name, description: $description) {
+    id
+  }
+}
+
+query getEquipment($id: ID) {
+  equipmentById (id: $id) {
+    id
+    name
+    description
+    location
+  }
+}
+
+query getEquipment {
+  equipments {
+    id
+    name
+    description
+    location
+  }
+}
+
+query getInspections {
+  inspections {
+    id
+    name
+    description
+    date
+    equipment {
+      id
+      name
+      description
+      location
+    }
+    user {
+      id
+      username
+      role {
+        id 
+        name
+        description
+      }
+    }
+    status {
+      id
+      name
+      description
+    }
+  }
+}

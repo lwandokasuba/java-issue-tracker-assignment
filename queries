@@ -30,6 +30,18 @@ mutation addStatus($name: String, $description: String) {
   }
 }
 
+mutation addRole($name: String, $description: String) {
+  addRole(name: $name, description: $description) {
+    id'
+  }
+}
+
+mutation addUser($username: String, $password: String) {
+  addUser(username: $username, password: $password) {
+    id
+  }
+}
+
 query getEquipment($id: ID) {
   equipmentById (id: $id) {
     id
@@ -74,5 +86,13 @@ query getInspections {
       name
       description
     }
+  }
+}
+
+query getStatus{
+  status {
+    id
+    name
+    description
   }
 }

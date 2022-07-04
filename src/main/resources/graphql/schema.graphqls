@@ -6,15 +6,15 @@ type Query {
     user (id: ID): User
     status: [Status]
     statusById (id: ID): Status
-    Roles: Role
-    RoleById (id: ID): Role
+    roles: Role
+    roleById (id: ID): Role
 }
 
 type Mutation {
     addEquipment(name: String, description: String): Equipment
     addInspection(name: String, description: String, equipmentId: ID, userId: ID, statusId: ID, date: String): Inspection
     addStatus(name: String, description: String): Status
-    addUser(username: String, password: String): User
+    addUser(username: String, password: String, roleId: ID): User
     addRole(name: String, description: String): Role
 
 }

@@ -36,8 +36,8 @@ public class UserController {
     }
 
     @MutationMapping
-    public User addUser(@Argument String username, @Argument String password) {
-        return userService.addNewUser(new User(username, password));
+    public User addUser(@Argument String username, @Argument String password, @Argument Long roleId) {
+        return userService.addNewUser(new User(username, password, roleId));
     }
 
 }

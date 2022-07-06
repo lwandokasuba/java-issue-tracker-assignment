@@ -3,14 +3,14 @@ import { gql } from '@apollo/client';
 const ADD_ROLE = gql`
   mutation addRole($name: String, $description: String) {
     addRole(name: $name, description: $description) {
-      id'
+      id
     }
   }
 `;
 
 const GET_ROLE = gql`
-  query getRoles{
-    roles {
+  query getRoles {
+    role {
       id
       name
       description

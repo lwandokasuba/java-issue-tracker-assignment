@@ -6,8 +6,9 @@ type Query {
     user (id: ID): User
     status: [Status]
     statusById (id: ID): Status
-    roles: Role
+    role: [Role]
     roleById (id: ID): Role
+    login (username: String!, password: String!): Login
 }
 
 type Mutation {
@@ -21,36 +22,43 @@ type Mutation {
 
 type Equipment {
     id: ID,
-    name: String,
+    name: String
     description: String
     location: String
 }
 
 type Inspection {
-    id: ID,
-    name: String,
-    description: String,
-    date: String,
-    equipment: Equipment,
-    user: User,
+    id: ID
+    name: String
+    description: String
+    date: String
+    equipment: Equipment
+    user: User
     status: Status
 }
 
 type Status {
-    id: ID,
-    name: String,
+    id: ID
+    name: String
     description: String
 }
 
 type User {
-    id: ID,
-    username: String,
-    password: String,
+    id: ID
+    username: String
+    password: String
     role: Role
 }
 
 type Role {
-    id: ID,
-    name: String,
+    id: ID
+    name: String
     description: String
+}
+
+type Login {
+    userId: ID
+    username: String
+    success: Boolean
+    failed: Boolean
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Avatar,
   Button,
@@ -17,13 +17,17 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../Loading';
+import { useIssue } from '../../context/IssueContext';
 
 export default function SignIn() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(false);
-  const [loadingCurrentUser, setLoadingCurrentUser] = useState(false);
+
+  const navigate = useNavigate();
+  const { login, currentUser, loadingLoggin } = useIssue();
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -35,9 +39,14 @@ export default function SignIn() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    setLoadingCurrentUser(true);
-    console.log(email, password);
+    login(email, password);
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate('/');
+    }
+  }, [currentUser]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,19 +70,19 @@ export default function SignIn() {
             Failed to continue with google
           </Typography>
           )} */}
-          {loadingCurrentUser && (<Loading />)}
+          {loadingLoggin && (<Loading />)}
         </Grid>
         <form noValidate>
           <TextField
-            type="email"
+            type="name"
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            name="email"
-            placeholder="Email"
-            autoComplete="email"
+            id="username"
+            name="name"
+            placeholder="User Name"
+            autoComplete="name"
             autoFocus
             onChange={(e) => setEmail(e.target.value)}
           />

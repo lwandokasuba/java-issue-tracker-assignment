@@ -23,7 +23,19 @@ const GET_USER = gql`
   }
 `;
 
+const LOGIN = gql`
+  query login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      userId
+      username
+      success
+      failed
+    }
+  }
+`;
+
 export {
   ADD_USER,
   GET_USER,
+  LOGIN,
 };

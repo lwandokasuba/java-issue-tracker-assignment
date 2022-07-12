@@ -8,12 +8,10 @@ import java.util.List;
 
 @Configuration
 public class UserConfig {
-
     @Bean
     CommandLineRunner userCreator(UserRepository repository) {
         return args -> {
             User admin = new User("admin", "password");
-
             repository.saveAll(List.of(admin));
         };
     }

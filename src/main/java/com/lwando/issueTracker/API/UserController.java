@@ -26,11 +26,11 @@ public class UserController {
     }
 
     @QueryMapping
-    public Optional<User> userById(@Argument Long id) {
+    public Optional<User> user(@Argument Long id) {
         return userService.getUserById(id);
     }
 
-    @SchemaMapping(typeName = "User")
+    @SchemaMapping
     public Optional<Role> role(User user) {
         return roleService.getRoleById(user.getRoleId());
     }

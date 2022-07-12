@@ -11,7 +11,7 @@ public class UserConfig {
     @Bean
     CommandLineRunner userCreator(UserRepository repository) {
         return args -> {
-            User admin = new User("admin", "password");
+            User admin = new User("admin", "password", 1L);
             repository.saveAll(List.of(admin));
         };
     }

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import {
-  BrowserRouter, Routes, Route, Outlet, Navigate,
+  BrowserRouter, Routes, Route, Outlet,
 } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import routes from './routes';
@@ -10,6 +10,7 @@ import { useIssue } from './context/IssueContext';
 import { Login } from './components';
 import SignUp from './components/SignUp';
 import Drawer from './components/Drawer';
+import Loading from './components/Loading';
 
 export default function App() {
   const { currentUser } = useIssue();
@@ -19,14 +20,14 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/login"
+            path="/"
             element={<Login />}
           />
           <Route
             path="/signup"
             element={<SignUp />}
           />
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Loading />} />
         </Routes>
         <Outlet />
       </BrowserRouter>
@@ -34,19 +35,27 @@ export default function App() {
   }
   return (
     <div>
-      <Drawer />
-      <NavBar />
-      <Toolbar />
       <BrowserRouter>
+        <Drawer />
+        <NavBar />
+        <Toolbar />
         <Routes>
-          {routes.map((route) => (
+          {currentUser && routes.map((route) => (
             <Route
               path={route.href}
               element={<route.component />}
               key={route.href}
             />
           ))}
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+            path="/signup"
+            element={<SignUp />}
+          />
+          <Route path="*" element={<Loading />} />
         </Routes>
         <Outlet />
       </BrowserRouter>

@@ -13,7 +13,7 @@ type Query {
 
 type Mutation {
     addEquipment(name: String!, description: String, location: String): Equipment
-    addInspection(name: String!, description: String, equipmentId: ID, userId: ID, statusId: ID, date: String): Inspection
+    addInspection(name: String!, description: String, equipmentId: ID!, userId: ID, statusId: ID, date: String): Inspection
     addStatus(name: String!, description: String): Status
     addUser(username: String!, password: String!, roleId: ID!): User
     addRole(name: String!, description: String): Role

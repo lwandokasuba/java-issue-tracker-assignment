@@ -2,9 +2,9 @@ import { gql } from '@apollo/client';
 
 const ADD_INSPECTION = gql`
   mutation addInspection(
-    $name: String
+    $name: String!
     $description: String
-    $equipmentId: ID,
+    $equipmentId: ID!,
     $userId: ID,
     $statusId: ID,
     $date: String
@@ -55,7 +55,7 @@ const GET_INSPECTIONS = gql`
 
 const GET_INSPECTION_BY_ID = gql`
 query getInspections($id: ID) {
-  inspections(id: $id) {
+  inspectionById(id: $id) {
     id
     name
     description
@@ -69,11 +69,6 @@ query getInspections($id: ID) {
     user {
       id
       username
-      role {
-        id 
-        name
-        description
-      }
     }
     status {
       id

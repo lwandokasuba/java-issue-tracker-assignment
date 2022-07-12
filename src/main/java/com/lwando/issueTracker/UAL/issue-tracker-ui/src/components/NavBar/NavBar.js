@@ -20,10 +20,13 @@ import { useIssue } from '../../context/IssueContext';
 
 export default function Header() {
   // const navigate = useNavigate();
-  const { currentUser, menuOpen, setMenuOpen } = useIssue();
+  const {
+    currentUser, menuOpen, setMenuOpen, logout,
+  } = useIssue();
 
   function handleSubmit(e) {
     e.preventDefault();
+    logout();
     // logout().then(() => {
     //   navigate(app.loginPath);
     // }).catch(() => {

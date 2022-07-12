@@ -19,6 +19,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Navigate } from 'react-router-dom';
 import Loading from '../Loading';
 import { useIssue } from '../../context/IssueContext';
 
@@ -38,6 +39,7 @@ export default function SignUp() {
     getRoles,
     gettingRole,
     addUser,
+    currentUser,
   } = useIssue();
 
   const handleMouseDownPassword = (event) => {
@@ -187,6 +189,9 @@ export default function SignUp() {
       </div>
       <Toolbar />
       <Toolbar />
+      {currentUser && (
+        <Navigate to="/" />
+      )}
     </Container>
   );
 }

@@ -4,6 +4,7 @@ import {
   Equipments,
   Home,
   Issues,
+  IssuesDetails,
 } from './pages';
 
 const routes = [
@@ -36,6 +37,12 @@ const routes = [
     title: 'Equipment Details',
     component: EquipmentDetails,
     href: '/equipment/:equipmentId',
+  },
+  {
+    id: 5,
+    title: 'Issues Details',
+    component: IssuesDetails,
+    href: 'issue/:issueId',
   },
 ];
 

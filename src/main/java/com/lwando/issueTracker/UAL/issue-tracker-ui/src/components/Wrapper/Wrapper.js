@@ -9,6 +9,7 @@ export default function Wrapper({ children, loading }) {
       maxWidth="lg"
       sx={{
         marginTop: 5,
+        marginBottom: 10,
       }}
     >
       <Paper sx={{ minHeight: 200, backgroundColor: 'grey.200' }}>

@@ -1,9 +1,11 @@
 import { gql } from '@apollo/client';
 
 const ADD_USER = gql`
-  mutation addUser($username: String, $password: String) {
-    addUser(username: $username, password: $password) {
+  mutation addUser($username: String!, $password: String!, $roleId: ID!) {
+    addUser(username: $username, password: $password, roleId: $roleId) {
       id
+      username
+      password
     }
   }
 `;

@@ -69,6 +69,11 @@ query getInspections($id: ID) {
     user {
       id
       username
+      role {
+        id
+        name
+        description
+      }
     }
     status {
       id

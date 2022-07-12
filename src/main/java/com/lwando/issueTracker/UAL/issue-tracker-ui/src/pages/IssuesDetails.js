@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {
-  Container, List, ListItem, ListItemText,
+  Container, Grid, List, ListItem, ListItemText,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -12,30 +12,45 @@ function Issue({ inspection }) {
   return (
     <Container>
       <List>
-        <ListItem>
-          <ListItemText primary="Name" secondary={inspection.name} />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Description" secondary={inspection.description} />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Date" secondary={inspection.date} />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Equipment Name" secondary={inspection.equipment.name} />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Equipment Description" secondary={inspection.equipment.description} />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Equipment Location" secondary={inspection.equipment.location} />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Status" secondary={inspection.status.name} />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Status Description" secondary={inspection.status.description} />
-        </ListItem>
+        <Grid
+          container
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+        >
+          <Grid item xs={6}>
+            {inspection.name && (
+            <ListItem>
+              <ListItemText primary="Name" secondary={inspection.name} />
+            </ListItem>
+            )}
+            <ListItem>
+              <ListItemText primary="Description" secondary={inspection.description} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Date" secondary={inspection.date} />
+            </ListItem>
+          </Grid>
+          <Grid item xs={6}>
+            <ListItem>
+              <ListItemText primary="Equipment Name" secondary={inspection.equipment.name} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Equipment Description" secondary={inspection.equipment.description} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Equipment Location" secondary={inspection.equipment.location} />
+            </ListItem>
+          </Grid>
+          <Grid item>
+            <ListItem>
+              <ListItemText primary="Status" secondary={inspection.status.name} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Status Description" secondary={inspection.status.description} />
+            </ListItem>
+          </Grid>
+        </Grid>
       </List>
     </Container>
   );
